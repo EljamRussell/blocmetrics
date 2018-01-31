@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe RegisteredApplication, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) { User.create!(email: "testing@testing.com", password:"helloworld") }
+  let(:registered_application) { RegisteredApplication.create!(name: "Reg App Test Name", url: 'test_url_here', user: user) }
+
+  describe 'attributes' do
+    it "has a name attribute" do
+      expect(registered_application.attribute).to have_attribute(name: "Reg App Test Name", url: "www.registerapp.com", user: user)
+    end
+  end
 end
